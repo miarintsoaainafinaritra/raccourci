@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendrier Agricole - Ferme de Noix</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    <link rel="stylesheet" href="gestionaire.css">
+    
+</head>
+<body>
+    <div class="container mx-auto">
+        <!-- Header Section -->
+        <header class="flex justify-between items-center p-4">
+            <div class="logo">
+                <h1 class="text-xl font-bold">🌰 FERME DE NOIX</h1>
+                <p class="text-sm">Production Bio depuis 1985</p>
+            </div>
+            <div class="admin-info text-sm">
+                <p class="flex items-center gap-2"><i class="fas fa-map-marker-alt"></i> Ferme des Coteaux</p>
+                <p class="flex items-center gap-2"><i class="fas fa-user-shield"></i> Admin Agriculteur</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="flex">
+            <!-- Sidebar Navigation -->
+            <aside class="sidebar w-64 min-h-screen p-4">
+                <div class="menu-section mb-8">
+                    <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
+                        <i class="fas fa-seedling"></i> Gestion de la Ferme
+                    </h3>
+                    <ul class="menu space-y-2">
+                        <li><a href="#" class="block p-2 rounded hover:bg-green-700"><i class="fas fa-tachometer-alt mr-2"></i> Tableau de Bord</a></li>
+                        <li class="active"><a href="commandes.html" class="block p-2 rounded hover:bg-green-700"><i class="fas fa-shopping-basket mr-2"></i> Commandes</a></li>
+                        <li><a href="profile.html" class="block p-2 rounded hover:bg-green-700"><i class="fas fa-user mr-2"></i> Profil</a></li>
+                        <li><a href="gestionaire.html" class="block p-2 rounded hover:bg-green-700"><i class="fas fa-cogs mr-2"></i> Gestion Fermière</a></li>
+                        <li><a href="verger.html" class="block p-2 rounded hover:bg-green-700"><i class="fas fa-tree mr-2"></i> Gestion des Vergers</a></li>
+                        <li><a href="suivi.html" class="block p-2 rounded hover:bg-green-700"><i class="fas fa-clipboard-check mr-2"></i> Suivi Récolte</a></li>
+                        <li><a href="#" class="block p-2 rounded hover:bg-green-700"><i class="fas fa-chart-bar mr-2"></i> Analyse Production</a></li>
+                        <li><a href="#" class="block p-2 rounded hover:bg-green-700"><i class="fas fa-map-marked-alt mr-2"></i> Gestion Parcelles</a></li>
+                        <li><a href="#" class="block p-2 rounded hover:bg-green-700"><i class="fas fa-seedling mr-2"></i> Variétés de Noix</a></li>
+                        <li><a href="#" class="block p-2 rounded hover:bg-green-700"><i class="fas fa-box-open mr-2"></i> Gestion Stock</a></li>
+                    </ul>
+                </div>
+
+                <div class="profile-section">
+                    <ul class="profile-menu space-y-2">
+                        <li><a href="cretificats.html" class="block p-2 rounded hover:bg-green-700"><i class="fas fa-print mr-2"></i> Certificats Bio</a></li>
+                        <li><a href="finaciere.html" class="block p-2 rounded hover:bg-green-700"><i class="fas fa-euro-sign mr-2"></i> Gestion Financière</a></li>
+                        <li><a href="calendrier.html" class="block p-2 rounded hover:bg-green-700"><i class="fas fa-calendar-alt mr-2"></i> Calendrier Agricole</a></li>
+                        <li><a href="materiel.html" class="block p-2 rounded hover:bg-green-700"><i class="fas fa-tractor mr-2"></i> Matériel Agricole</a></li>
+                        <li><a href="employe.html" class="block p-2 rounded hover:bg-green-700"><i class="fas fa-users mr-2"></i> Employés</a></li>
+                       
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Main Content Area -->
+            <main class="flex-1 p-8 bg-green-50">
+                <header class="text-center mb-8">
+                    <h1 class="text-3xl font-bold text-green-800 mb-2" style="color: white;">Calendrier Agricole</h1>
+                    <p class="text-green-600" style="color: white;">Organisez vos activités agricoles</p>
+                </header>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Formulaire d'ajout -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h2 class="text-xl font-semibold text-green-700 mb-4">Ajouter une activité</h2>
+                        <form id="activityForm" class="space-y-4">
+                            <div>
+                                <label class="block text-gray-700 text-sm font-medium mb-1" for="date">Date</label>
+                                <input type="date" id="date" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" required>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 text-sm font-medium mb-1" for="activity">Activité</label>
+                                <select id="activity" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" required>
+                                    <option value="">Sélectionner une activité</option>
+                                    <option value="semis">Semis</option>
+                                    <option value="plantation">Plantation</option>
+                                    <option value="arrosage">Arrosage</option>
+                                    <option value="récolte">Récolte</option>
+                                    <option value="fertilisation">Fertilisation</option>
+                                    <option value="traitement">Traitement phytosanitaire</option>
+                                    <option value="labourage">Labourage</option>
+                                    <option value="autre">Autre</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 text-sm font-medium mb-1" for="description">Description</label>
+                                <textarea id="description" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" rows="3" placeholder="Détails de l'activité..."></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 text-sm font-medium mb-1" for="parcelle">Parcelle</label>
+                                <input type="text" id="parcelle" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Nom de la parcelle">
+                            </div>
+                            <button type="submit" class="w-full bg-green-600 text-white font-medium py-2 px-4 rounded-md hover:bg-green-700 transition duration-200 flex items-center justify-center">
+                                <i class="fas fa-save mr-2"></i> Enregistrer
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Liste des activités -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-xl font-semibold text-green-700">Activités planifiées</h2>
+                            <button id="exportBtn" class="bg-blue-600 text-white font-medium py-2 px-4 rounded-md hover:bg-blue-700 transition duration-200 flex items-center">
+                                <i class="fas fa-download mr-2"></i> Exporter
+                            </button>
+                        </div>
+                        <div id="activitiesList" class="space-y-3 max-h-96 overflow-y-auto">
+                            <!-- Les activités seront ajoutées ici dynamiquement -->
+                            <div class="text-gray-500 text-center py-8 border-2 border-dashed border-gray-200 rounded-lg">
+                                <i class="fas fa-calendar-alt text-4xl mb-2 text-gray-400"></i>
+                                <p>Aucune activité enregistrée</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <footer class="p-4 text-center">
+            <p>Copyright © 2023 Ferme de Noix | Tous droits réservés | <a href="#" class="hover:underline">Mentions légales</a></p>
+        </footer>
+    </div>
+
+    <script src="calendrier.js"></script>
+</body>
+</html>

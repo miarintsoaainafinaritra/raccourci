@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Profil utilisateur de la Ferme de Noix - Gestion agricole bio">
+    <title>Mon Profil - Ferme de Noix</title>
+    <link rel="stylesheet" href="gestionaire.css">
+    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <h1>🌰Ferme de Noix</h1>
+                <p>Production Bio depuis 1985</p>
+            </div>
+            <div class="admin-info">
+                 <p><i class="fas fa-map-marker-alt"></i> Ferme des Coteaux</p>
+                <p><i class="fas fa-user-shield"></i> Admin Agriculteur</p>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <aside class="sidebar" aria-label="Menu de navigation">
+                <div class="menu-section">
+                   <h3><i class="fas fa-seedling"></i> Gestion de la Ferme</h3>
+                    <ul class="menu" role="navigation">
+                        <li><a href="commandes.html"><i class="fas fa-tachometer-alt" aria-hidden="true"></i> Tableau de Bord</a></li>
+                        <li><a href="entre.html"><i class="fas fa-shopping-basket" aria-hidden="true"></i> Commandes</a></li>
+                        <li class="active"><a href="profile.html" aria-current="page"><i class="fas fa-user" aria-hidden="true"></i> Profil</a></li>
+                        <li><a href="gestionaire.html"><i class="fas fa-cogs" aria-hidden="true"></i> Gestion Fermière</a></li>
+                    </ul>
+                </div>
+
+                <div class="profile-section">
+                    
+                    <ul class="profile-menu" role="navigation">
+                        <li><a href="cretificats.html"><i class="fas fa-print" aria-hidden="true"></i> Certificats Bio</a></li>
+                        <li><a href="finaciere.html"><i class="fas fa-euro-sign" aria-hidden="true"></i> Gestion Financière</a></li>
+                    </ul>
+                </div>
+            </aside>
+
+            <main class="content" aria-label="Contenu principal">
+                <div class="profile-page">
+                    <div class="profile-container">
+                        <div class="profile-card">
+                            <div class="profile-header">
+                                <div class="avatar-container">
+                                    <img src="https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80" 
+                                         alt="Photo de profil de Jean Dupont" 
+                                         class="avatar-image" 
+                                         id="profileImage"
+                                         loading="lazy">
+                                    <div class="avatar-actions">
+                                        <input type="file" name="avatar" id="avatarUpload" accept="image/png,image/jpeg,image/webp" style="display: none;" aria-label="Télécharger une nouvelle photo de profil">
+                                    </div>
+                                </div>
+                                <div class="profile-info">
+                                    <h3 id="profileName">Jean Dupont</h3>
+                                    <p class="role" id="profileRole">Propriétaire - Ferme des Coteaux</p>
+                                    <p class="location"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> <span id="profileLocation">Dordogne, France</span></p>
+                                </div>
+                            </div>
+
+                            <div class="profile-stats">
+                                <div class="stat-item">
+                                    <div class="stat-value" id="statExperience">12</div>
+                                    <div class="stat-label">Ans d'expérience</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value" id="statTrees">1250</div>
+                                    <div class="stat-label">Noyers</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value" id="statRating">4.9</div>
+                                    <div class="stat-label">Note clients</div>
+                                </div>
+                            </div>
+
+                         
+                            <div class="error-message" id="errorMessage"></div>
+                        </div>
+
+                        <div class="profile-details">
+                            <div class="detail-section">
+                                <div class="detail-header">
+                                    <h4><i class="fas fa-info-circle" aria-hidden="true"></i> Informations personnelles</h4>
+                                    <button class="btn-edit" id="editPersonalInfoBtn" aria-label="Modifier les informations personnelles">
+                                        <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="detail-grid" id="personalInfoDisplay">
+                                    <div class="detail-item">
+                                        <span class="detail-label">Email :</span>
+                                        <span class="detail-value" id="infoEmail">jean.dupont@fermedenoix.fr</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Téléphone :</span>
+                                        <span class="detail-value" id="infoPhone">+33 6 12 34 56 78</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Date de naissance :</span>
+                                        <span class="detail-value" id="infoBirthdate">15/03/1978</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Adresse :</span>
+                                        <span class="detail-value" id="infoAddress">123 Route des Noyers, 24000 Périgueux</span>
+                                    </div>
+                                </div>
+                                
+                                <form class="edit-form" id="personalInfoForm">
+                                    <div class="form-group">
+                                        <label for="editEmail">Email :</label>
+                                        <input type="email" id="editEmail" value="jean.dupont@fermedenoix.fr">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editPhone">Téléphone :</label>
+                                        <input type="tel" id="editPhone" value="+33 6 12 34 56 78">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editBirthdate">Date de naissance :</label>
+                                        <input type="date" id="editBirthdate" value="1978-03-15">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editAddress">Adresse :</label>
+                                        <textarea id="editAddress">123 Route des Noyers, 24000 Périgueux</textarea>
+                                    </div>
+                                    <div class="form-actions">
+                                        <button type="button" class="btn btn-secondary" id="cancelPersonalEdit">Annuler</button>
+                                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="detail-section">
+                                <div class="detail-header">
+                                    <h4><i class="fas fa-tractor" aria-hidden="true"></i> Informations professionnelles</h4>
+                                    <button class="btn-edit" id="editProfessionalInfoBtn" aria-label="Modifier les informations professionnelles">
+                                        <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="detail-grid" id="professionalInfoDisplay">
+                                    <div class="detail-item">
+                                        <span class="detail-label">Spécialité :</span>
+                                        <span class="detail-value" id="infoSpecialty">Noix de Grenoble BIO</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Certifications :</span>
+                                        <span class="detail-value" id="infoCertifications">Agriculture Biologique, Label Rouge</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Date d'installation :</span>
+                                        <span class="detail-value" id="infoInstallation">Juin 2011</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Surface exploitée :</span>
+                                        <span class="detail-value" id="infoSurface">15 hectares</span>
+                                    </div>
+                                </div>
+                                
+                                <form class="edit-form" id="professionalInfoForm">
+                                    <div class="form-group">
+                                        <label for="editSpecialty">Spécialité :</label>
+                                        <input type="text" id="editSpecialty" value="Noix de Grenoble BIO">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editCertifications">Certifications :</label>
+                                        <input type="text" id="editCertifications" value="Agriculture Biologique, Label Rouge">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editInstallation">Date d'installation :</label>
+                                        <input type="text" id="editInstallation" value="Juin 2011">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editSurface">Surface exploitée :</label>
+                                        <input type="text" id="editSurface" value="15 hectares">
+                                    </div>
+                                    <div class="form-actions">
+                                        <button type="button" class="btn btn-secondary" id="cancelProfessionalEdit">Annuler</button>
+                                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="detail-section">
+                                <h4><i class="fas fa-chart-line" aria-hidden="true"></i> Activité récente</h4>
+                                <div class="activity-timeline">
+                                    <div class="activity-item">
+                                        <div class="activity-icon success">
+                                            <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="activity-content">
+                                            <p>Nouvelle commande #1290 de 85€</p>
+                                            <small>Aujourd'hui, 14:32</small>
+                                        </div>
+                                    </div>
+                                    <div class="activity-item">
+                                        <div class="activity-icon primary">
+                                            <i class="fas fa-tree" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="activity-content">
+                                            <p>Récolte prévue pour la parcelle N3</p>
+                                            <small>Hier, 09:15</small>
+                                        </div>
+                                    </div>
+                                    <div class="activity-item">
+                                        <div class="activity-icon warning">
+                                            <i class="fas fa-tools" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="activity-content">
+                                            <p>Maintenance du matériel de récolte</p>
+                                            <small>Lundi, 16:45</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <footer>
+            <p>Copyright © 2025 Ferme de Noix | Tous droits réservés | <a href="#" aria-label="Consulter les mentions légales">Mentions légales</a></p>
+        </footer>
+    </div>
+
+   
+    <script src="profile.js"></script>
+</body>
+</html>

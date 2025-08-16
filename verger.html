@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Vergers - Ferme de Noix</title>
+    <link rel="stylesheet" href="verger.css">
+    <link rel="stylesheet" href="gestionaire.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <h1>🌰 FERME DE NOIX</h1>
+                <p>Production Bio depuis 1985</p>
+            </div>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="admin-info">
+                <p><i class="fas fa-map-marker-alt"></i> Ferme des Coteaux</p>
+                <p><i class="fas fa-user-shield"></i> Admin Agriculteur</p>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <aside class="sidebar" id="sidebar">
+                <div class="menu-section">
+                    <h3><i class="fas fa-seedling"></i> Gestion de la Ferme</h3>
+                    <ul class="menu">
+                        <li><a href="commandes.html"><i class="fas fa-tachometer-alt"></i> Tableau de Bord</a></li>
+                        <li><a href="entre.html"><i class="fas fa-shopping-basket"></i> Commandes</a></li>
+                        <li><a href="profile.html"><i class="fas fa-user"></i> Profil</a></li>
+                        <li><a href="gestionaire.html"><i class="fas fa-cogs"></i> Gestion Fermière</a></li>
+                        <li class="active"><a href="verger.html"><i class="fas fa-tree"></i> Gestion des Vergers</a></li>
+                    </ul>
+                </div>
+
+                <div class="profile-section">
+                    <ul class="profile-menu menu">
+                        <li><a href="cretificats.html"><i class="fas fa-certificate"></i> Certificats Bio</a></li>
+                        <li><a href="finaciere.html"><i class="fas fa-euro-sign"></i> Gestion Financière</a></li>
+                        <li><a href="analytics.html"><i class="fas fa-chart-line"></i> Analyses</a></li>
+                        <li><a href="settings.html"><i class="fas fa-cog"></i> Paramètres</a></li>
+                    </ul>
+                </div>
+            </aside>
+
+            <main class="content">
+                <!-- Statistiques des vergers -->
+                <div class="stats-container">
+                    <div class="stat-card hover-card">
+                        <div class="stat-header">
+                            <span class="stat-title">Vergers Actifs</span>
+                            <i class="fas fa-tree stat-icon"></i>
+                        </div>
+                        <div class="stat-value" id="activeOrchards">8</div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+1 cette année</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card hover-card">
+                        <div class="stat-header">
+                            <span class="stat-title">Surface Totale</span>
+                            <i class="fas fa-ruler-combined stat-icon"></i>
+                        </div>
+                        <div class="stat-value">42.5 ha</div>
+                        <div class="stat-change neutral">
+                            <i class="fas fa-equals"></i>
+                            <span>Stable</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card hover-card">
+                        <div class="stat-header">
+                            <span class="stat-title">Rendement Moyen</span>
+                            <i class="fas fa-apple-alt stat-icon"></i>
+                        </div>
+                        <div class="stat-value">3.2 t/ha</div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+7% vs 2022</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card hover-card">
+                        <div class="stat-header">
+                            <span class="stat-title">Arbres en Production</span>
+                            <i class="fas fa-leaf stat-icon"></i>
+                        </div>
+                        <div class="stat-value">1,248</div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+86 nouveaux</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="management-page">
+                    <div class="page-header">
+                        <h2 class="page-title">
+                            <i class="fas fa-tree"></i> 
+                            Gestion des Vergers
+                        </h2>
+                        <div class="toolbar">
+                            <button class="btn btn-primary" id="addOrchardBtn">
+                                <i class="fas fa-plus"></i> Ajouter un Verger
+                            </button>
+                            <button class="btn btn-export" id="exportOrchardBtn">
+                                <i class="fas fa-file-export"></i> Exporter
+                            </button>
+                            <button id="trashBtn" class="btn btn-secondary" title="Voir la corbeille">
+                                <i class="fas fa-trash"></i> Corbeille (<span id="trashCount">0</span>)
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="filters-section">
+                        <div class="filter-group">
+                            <label class="filter-label"><i class="fas fa-search"></i> Recherche</label>
+                            <input type="text" id="searchOrchardInput" class="filter-control" placeholder="Nom, localisation, variété...">
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label"><i class="fas fa-filter"></i> Statut</label>
+                            <select id="statusOrchardFilter" class="filter-control">
+                                <option value="">Tous les statuts</option>
+                                <option value="active">En production</option>
+                                <option value="young">Jeune plantation</option>
+                                <option value="conversion">En conversion bio</option>
+                                <option value="inactive">Inactif</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label"><i class="fas fa-seedling"></i> Variété</label>
+                            <select id="varietyFilter" class="filter-control">
+                                <option value="">Toutes les variétés</option>
+                                <option value="franquette">Franquette</option>
+                                <option value="mayette">Mayette</option>
+                                <option value="parisienne">Parisienne</option>
+                                <option value="ferragnes">Ferragnès</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <button class="btn btn-secondary" id="resetFiltersBtn">
+                                <i class="fas fa-undo"></i> Réinitialiser
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="management-table" id="orchardTable">
+                            <thead>
+                                <tr>
+                                    <th><i class="fas fa-signature"></i> Nom</th>
+                                    <th><i class="fas fa-map-marked-alt"></i> Localisation</th>
+                                    <th><i class="fas fa-ruler-combined"></i> Surface (ha)</th>
+                                    <th><i class="fas fa-seedling"></i> Variété</th>
+                                    <th><i class="fas fa-tree"></i> Nombre d'arbres</th>
+                                    <th><i class="fas fa-calendar-alt"></i> Plantation</th>
+                                    <th><i class="fas fa-info-circle"></i> Statut</th>
+                                    <th><i class="fas fa-cogs"></i> Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="orchardTableBody">
+                                <tr>
+                                    <td>Verger des Coteaux</td>
+                                    <td>Parcelle A12</td>
+                                    <td>5.2</td>
+                                    <td>Franquette</td>
+                                    <td>156</td>
+                                    <td>15/03/2015</td>
+                                    <td>
+                                        <span class="status-badge status-active">
+                                            <i class="fas fa-check-circle"></i>
+                                            En production
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <button class="action-btn info-btn" onclick="viewOrchard(1)" title="Voir détails">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="action-btn edit-btn" onclick="editOrchard(1)" title="Modifier">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="action-btn delete-btn" onclick="deleteOrchard(1)" title="Supprimer">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Verger du Plateau</td>
+                                    <td>Parcelle B07</td>
+                                    <td>7.8</td>
+                                    <td>Mayette</td>
+                                    <td>234</td>
+                                    <td>22/10/2018</td>
+                                    <td>
+                                        <span class="status-badge status-active">
+                                            <i class="fas fa-check-circle"></i>
+                                            En production
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <button class="action-btn info-btn" onclick="viewOrchard(2)" title="Voir détails">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="action-btn edit-btn" onclick="editOrchard(2)" title="Modifier">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="action-btn delete-btn" onclick="deleteOrchard(2)" title="Supprimer">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Verger des Sources</td>
+                                    <td>Parcelle C03</td>
+                                    <td>3.5</td>
+                                    <td>Parisienne</td>
+                                    <td>105</td>
+                                    <td>05/04/2020</td>
+                                    <td>
+                                        <span class="status-badge status-conversion">
+                                            <i class="fas fa-clock"></i>
+                                            En conversion bio
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <button class="action-btn info-btn" onclick="viewOrchard(3)" title="Voir détails">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="action-btn edit-btn" onclick="editOrchard(3)" title="Modifier">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="action-btn delete-btn" onclick="deleteOrchard(3)" title="Supprimer">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Verger Nouveau</td>
+                                    <td>Parcelle D15</td>
+                                    <td>2.0</td>
+                                    <td>Ferragnès</td>
+                                    <td>60</td>
+                                    <td>12/11/2022</td>
+                                    <td>
+                                        <span class="status-badge status-young">
+                                            <i class="fas fa-seedling"></i>
+                                            Jeune plantation
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <button class="action-btn info-btn" onclick="viewOrchard(4)" title="Voir détails">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="action-btn edit-btn" onclick="editOrchard(4)" title="Modifier">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="action-btn delete-btn" onclick="deleteOrchard(4)" title="Supprimer">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Ancien Verger Est</td>
+                                    <td>Parcelle E09</td>
+                                    <td>4.3</td>
+                                    <td>Franquette</td>
+                                    <td>129</td>
+                                    <td>18/06/2010</td>
+                                    <td>
+                                        <span class="status-badge status-inactive">
+                                            <i class="fas fa-times-circle"></i>
+                                            Inactif
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <button class="action-btn info-btn" onclick="viewOrchard(5)" title="Voir détails">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="action-btn edit-btn" onclick="editOrchard(5)" title="Modifier">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="action-btn delete-btn" onclick="deleteOrchard(5)" title="Supprimer">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="pagination" id="pagination">
+                        <button class="page-btn" disabled><i class="fas fa-angle-left"></i></button>
+                        <button class="page-btn active">1</button>
+                        <button class="page-btn">2</button>
+                        <button class="page-btn">3</button>
+                        <button class="page-btn"><i class="fas fa-angle-right"></i></button>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal pour ajouter/modifier un verger -->
+    <div id="orchardModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalOrchardTitle"><i class="fas fa-tree"></i> Ajouter un Verger</h3>
+                <span class="close-modal" id="closeOrchardModal">&times;</span>
+            </div>
+            <form id="orchardForm">
+                <div class="form-group">
+                    <label class="form-label" for="orchardName">
+                        <i class="fas fa-signature"></i> Nom du verger
+                    </label>
+                    <input type="text" id="orchardName" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="orchardLocation">
+                        <i class="fas fa-map-marked-alt"></i> Localisation (parcelle)
+                    </label>
+                    <input type="text" id="orchardLocation" class="form-control" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group form-col">
+                        <label class="form-label" for="orchardSurface">
+                            <i class="fas fa-ruler-combined"></i> Surface (hectares)
+                        </label>
+                        <input type="number" id="orchardSurface" class="form-control" min="0.1" step="0.1" required>
+                    </div>
+                    <div class="form-group form-col">
+                        <label class="form-label" for="orchardTrees">
+                            <i class="fas fa-tree"></i> Nombre d'arbres
+                        </label>
+                        <input type="number" id="orchardTrees" class="form-control" min="1" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="orchardVariety">
+                        <i class="fas fa-seedling"></i> Variété principale
+                    </label>
+                    <select id="orchardVariety" class="form-control" required>
+                        <option value="">Sélectionner une variété</option>
+                        <option value="franquette">Franquette</option>
+                        <option value="mayette">Mayette</option>
+                        <option value="parisienne">Parisienne</option>
+                        <option value="ferragnes">Ferragnès</option>
+                        <option value="other">Autre</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="orchardPlantationDate">
+                        <i class="fas fa-calendar-alt"></i> Date de plantation
+                    </label>
+                    <input type="date" id="orchardPlantationDate" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="orchardStatus">
+                        <i class="fas fa-info-circle"></i> Statut
+                    </label>
+                    <select id="orchardStatus" class="form-control" required>
+                        <option value="active">En production</option>
+                        <option value="young">Jeune plantation</option>
+                        <option value="conversion">En conversion bio</option>
+                        <option value="inactive">Inactif</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="orchardNotes">
+                        <i class="fas fa-sticky-note"></i> Notes
+                    </label>
+                    <textarea id="orchardNotes" class="form-control" rows="3"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelOrchardBtn">
+                        <i class="fas fa-times"></i> Annuler
+                    </button>
+                    <button type="submit" class="btn btn-primary" id="saveOrchardBtn">
+                        <i class="fas fa-save"></i> Enregistrer
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de détails du verger -->
+    <div id="orchardDetailModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="detailOrchardTitle"><i class="fas fa-info-circle"></i> Détails du Verger</h3>
+                <span class="close-modal" id="closeDetailModal">&times;</span>
+            </div>
+            <div class="modal-body" id="orchardDetailContent">
+                <!-- Contenu dynamique chargé par JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="closeDetailBtn">
+                    <i class="fas fa-times"></i> Fermer
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de corbeille -->
+    <div id="trashModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-trash"></i> Corbeille</h3>
+                <span class="close-modal" id="closeTrashModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="trashContent">
+                    <!-- Contenu dynamique chargé par JavaScript -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="emptyTrashBtn" class="btn btn-danger">
+                    <i class="fas fa-trash"></i> Vider la corbeille
+                </button>
+                <button id="closeTrashBtn" class="btn btn-secondary">
+                    <i class="fas fa-times"></i> Fermer
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Copyright © 2023 Ferme de Noix | Tous droits réservés | <a href="#">Mentions légales</a></p>
+    </footer>
+
+    <script src="verger.js"></script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Noix - Paramètres</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="settings.css">
+    <link rel="stylesheet" href="entre.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <h1>🌰 FERME DE NOIX</h1>
+                <p>Production Bio depuis 1985</p>
+            </div>
+            <div class="admin-info">
+                <p><i class="fas fa-map-marker-alt"></i> Ferme des Coteaux</p>
+                <p><i class="fas fa-user-shield"></i> Admin Agriculteur</p>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <aside class="sidebar" id="sidebar">
+                <div class="menu-section">
+                    <h3><i class="fas fa-seedling"></i> Gestion de la Ferme</h3>
+                    <ul class="menu">
+                        <li><a href="commandes.html"><i class="fas fa-tachometer-alt"></i> Tableau de Bord</a></li>
+                        <li><a href="entre.html"><i class="fas fa-shopping-basket"></i> Commandes</a></li>
+                        <li><a href="profile.html"><i class="fas fa-user"></i> Profil</a></li>
+                        <li><a href="gestionaire.html"><i class="fas fa-cogs"></i> Gestion Fermière</a></li>
+                        <li class="active"><a href="verger.html"><i class="fas fa-tree"></i> Gestion des Vergers</a></li>
+                    </ul>
+                </div>
+
+                <div class="profile-section">
+                    <ul class="profile-menu menu">
+                        <li><a href="cretificats.html"><i class="fas fa-certificate"></i> Certificats Bio</a></li>
+                        <li><a href="finaciere.html"><i class="fas fa-euro-sign"></i> Gestion Financière</a></li>
+                        <li><a href="analytics.html"><i class="fas fa-chart-line"></i> Analyses</a></li>
+                        <li><a href="settings.html"><i class="fas fa-cog"></i> Paramètres</a></li>
+                    </ul>
+                </div>
+            </aside>
+
+            <main>
+                <div class="settings-container">
+                    <div class="settings-panel">
+                        <h1><i class="fas fa-walnut"></i> Paramètres des Noix</h1>
+                        
+                        <div class="setting-group">
+                            <h2><i class="fas fa-dna"></i> Variétés</h2>
+                            <label for="main-variety">Variété principale</label>
+                            <select id="main-variety">
+                                <option value="grenoble">Noix de Grenoble</option>
+                                <option value="perigord">Noix du Périgord</option>
+                                <option value="cerneaux">Cerneaux</option>
+                            </select>
+                        </div>
+
+                        <div class="setting-group">
+                            <h2><i class="fas fa-tractor"></i> Production</h2>
+                            <label for="plant-density">Densité de plantation (arbres/ha)</label>
+                            <input type="number" id="plant-density" min="50" max="200" value="120">
+                            
+                            <label style="margin-top: 15px;">Mode de culture</label>
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" id="culture-bio" name="culture-mode" value="bio" checked>
+                                    <label for="culture-bio">Bio</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="culture-raisonnee" name="culture-mode" value="raisonnee">
+                                    <label for="culture-raisonnee">Raisonnée</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="setting-group">
+                            <h2><i class="fas fa-calendar-alt"></i> Récolte</h2>
+                            <label for="harvest-method">Méthode de récolte</label>
+                            <select id="harvest-method">
+                                <option value="manual">Manuelle</option>
+                                <option value="mechanical">Mécanique</option>
+                                <option value="mixed">Mixte</option>
+                            </select>
+                            
+                            <label for="harvest-month" style="margin-top: 15px;">Mois de récolte</label>
+                            <input type="month" id="harvest-month">
+                        </div>
+
+                        <div class="actions">
+                            <button class="btn btn-primary" id="save-btn">
+                                <i class="fas fa-save"></i> Enregistrer
+                            </button>
+                            <button class="btn btn-secondary" id="reset-btn">
+                                <i class="fas fa-undo"></i> Réinitialiser
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="saved-list">
+                        <h1><i class="fas fa-list"></i> Configurations Enregistrées</h1>
+                        <div id="saved-settings-container">
+                            <div class="empty-list">
+                                <i class="fas fa-info-circle" style="font-size: 24px;"></i>
+                                <p>Aucune configuration enregistrée</p>
+                            </div>
+                        </div>
+
+                        <div class="trash-section">
+                            <h2><i class="fas fa-trash"></i> Corbeille</h2>
+                            <div class="trash-list" id="trash-container">
+                                <div class="empty-list">
+                                    <i class="fas fa-trash-alt" style="font-size: 24px;"></i>
+                                    <p>Corbeille vide</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <div class="notification" id="notification">
+            <i class="fas fa-check-circle"></i> <span id="notification-message">Paramètres enregistrés avec succès!</span>
+        </div>
+        
+        <footer>
+            <p>Copyright © 2023 Ferme de Noix | Tous droits réservés | <a href="#">Mentions légales</a></p>
+        </footer>
+    </div>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="settings.js"></script>
+</body>
+</html>

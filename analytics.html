@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyse de Production de Noix</title>
+    <link rel="stylesheet" href="analytics.css">
+    <link rel="stylesheet" href="gestionaire.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <h1>🌰 FERME DE NOIX</h1>
+                <p>Production Bio depuis 1985</p>
+            </div>
+            <div class="admin-info">
+                <p><i class="fas fa-map-marker-alt"></i> Ferme des Coteaux</p>
+                <p><i class="fas fa-user-shield"></i> Admin Agriculteur</p>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <aside class="sidebar" id="sidebar">
+                <div class="menu-section">
+                    <h3><i class="fas fa-seedling"></i> Gestion de la Ferme</h3>
+                    <ul class="menu">
+                        <li><a href="commandes.html"><i class="fas fa-tachometer-alt"></i> Tableau de Bord</a></li>
+                        <li><a href="entre.html"><i class="fas fa-shopping-basket"></i> Commandes</a></li>
+                        <li><a href="profile.html"><i class="fas fa-user"></i> Profil</a></li>
+                        <li><a href="gestionaire.html"><i class="fas fa-cogs"></i> Gestion Fermière</a></li>
+                        <li class="active"><a href="verger.html"><i class="fas fa-tree"></i> Gestion des Vergers</a></li>
+                    </ul>
+                </div>
+
+                <div class="profile-section">
+                    <ul class="profile-menu menu">
+                        <li><a href="cretificats.html"><i class="fas fa-certificate"></i> Certificats Bio</a></li>
+                        <li><a href="finaciere.html"><i class="fas fa-euro-sign"></i> Gestion Financière</a></li>
+                        <li><a href="analytics.html"><i class="fas fa-chart-line"></i> Analyses</a></li>
+                        <li><a href="settings.html"><i class="fas fa-cog"></i> Paramètres</a></li>
+                    </ul>
+                </div>
+            </aside>
+
+            <div class="dashboard">
+                <header class="dashboard-header">
+                    <div class="header-content">
+                        <h1>
+                            <span class="icon">🌰</span>
+                            Tableau de Bord - Production de Noix
+                        </h1>
+                        <div class="header-info">
+                            <span class="info-item">Dernière mise à jour: <strong>Aujourd'hui</strong></span>
+                            <span class="info-item">Saison: <strong>2023/2024</strong></span>
+                        </div>
+                    </div>
+                    <div class="header-actions">
+                        <div class="year-selector">
+                            <label for="yearSelector">Année:</label>
+                            <select id="yearSelector" class="custom-select">
+                                <!-- Les options seront générées dynamiquement en JS -->
+                            </select>
+                        </div>
+                        <button id="exportBtn" class="export-button">
+                            <span class="icon">📄</span> Exporter PDF
+                        </button>
+                    </div>
+                </header>
+                
+                <div class="kpi-cards">
+                    <div class="kpi-card">
+                        <div class="kpi-value">2,450 kg</div>
+                        <div class="kpi-label">Production totale</div>
+                        <div class="kpi-trend positive">+12% vs 2023</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-value">87%</div>
+                        <div class="kpi-label">Qualité premium</div>
+                        <div class="kpi-trend positive">+3% vs 2023</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-value">€4.25</div>
+                        <div class="kpi-label">Prix moyen/kg</div>
+                        <div class="kpi-trend positive">+8% vs 2023</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-value">48%</div>
+                        <div class="kpi-label">Noix de Grenoble</div>
+                        <div class="kpi-trend neutral">+3% vs 2023</div>
+                    </div>
+                </div>
+                
+                <div class="chart-row">
+                    <div class="chart-container">
+                        <div class="chart-header">
+                            <h2>Production par Verger</h2>
+                            <div class="chart-legend">
+                                <span class="legend-item"><span class="legend-color production"></span> Production (kg)</span>
+                            </div>
+                        </div>
+                        <canvas id="productionChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <div class="chart-header">
+                            <h2>Qualité des Noix</h2>
+                            <div class="chart-legend">
+                                <span class="legend-item"><span class="legend-color quality"></span> Qualité Premium (%)</span>
+                            </div>
+                        </div>
+                        <canvas id="qualityChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="chart-row">
+                    <div class="chart-container">
+                        <div class="chart-header">
+                            <h2>Répartition des Variétés</h2>
+                        </div>
+                        <canvas id="varietyChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <div class="chart-header">
+                            <h2>Évolution des Prix</h2>
+                            <div class="chart-legend">
+                                <span class="legend-item"><span class="legend-color trend"></span> Prix moyen (€/kg)</span>
+                            </div>
+                        </div>
+                        <canvas id="monthlyTrendChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+           <footer>
+                    <p>Copyright © 2023 Ferme de Noix | Tous droits réservés | <a href="#">Mentions légales</a></p>
+                </footer>
+    </div>
+
+    <script src="analytics.js"></script>
+</body>
+</html>

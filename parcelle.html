@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Parcelles - Ferme de Noix</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    <link rel="stylesheet" href="parcelle.css">
+    <link rel="stylesheet" href="entre.css">
+  
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <div class="logo">
+                <h1>🌰FERME DE NOIX</h1>
+                <p>Production Bio depuis 1985</p>
+            </div>
+            <div class="admin-info">
+                <p><i class="fas fa-map-marker-alt"></i> Ferme des Coteaux</p>
+                <p><i class="fas fa-user-shield"></i> Admin Agriculteur</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Sidebar Navigation -->
+            <aside class="sidebar">
+                <div class="menu-section">
+                    <h3><i class="fas fa-seedling"></i> Gestion de la Ferme</h3>
+                    <ul class="menu">
+                        <li><a href="entre.html"><i class="fas fa-tachometer-alt"></i> Tableau de Bord</a></li>
+                        <li><a href="commandes.html"><i class="fas fa-shopping-basket"></i> Commandes</a></li>
+                        <li><a href="profile.html"><i class="fas fa-user"></i> Profil</a></li>
+                        <li><a href="gestionaire.html"><i class="fas fa-cogs"></i> Gestion Fermière</a></li>
+                        <li><a href="verger.html"><i class="fas fa-tree"></i> Gestion des Vergers</a></li>
+                        <li><a href="suivi.html"><i class="fas fa-clipboard-check"></i> Suivi Récolte</a></li>
+                        <li><a href="parcelle.html"><i class="fas fa-map-marked-alt"></i> Gestion Parcelles</a></li>
+                        <li><a href="varieter.html"><i class="fas fa-seedling"></i> Variétés de Noix</a></li>
+                        <li><a href="stock.html"><i class="fas fa-box-open"></i> Gestion Stock</a></li>
+                    </ul>
+                </div>
+
+                <div class="profile-section">
+                    <ul class="profile-menu">
+                        <li><a href="cretificats.html"><i class="fas fa-print"></i> Certificats Bio</a></li>
+                        <li><a href="finaciere.html"><i class="fas fa-euro-sign"></i> Gestion Financière</a></li>
+                        <li><a href="calendrier.html"><i class="fas fa-calendar-alt"></i> Calendrier Agricole</a></li>
+                        <li><a href="materiel.html"><i class="fas fa-tractor"></i> Matériel Agricole</a></li>
+                        <li><a href="employe.html"><i class="fas fa-users"></i> Employés</a></li>
+                    </ul>
+                </div>
+            </aside>
+            
+            <main class="content">
+                <div class="content-header">
+                    <h2 class="content-title">
+                        <i class="fas fa-list"></i> Liste des parcelles
+                    </h2>
+                    <div class="header-actions">
+                        <div class="search-bar">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Rechercher une parcelle...">
+                        </div>
+                        <button class="btn btn-primary" id="addParcelBtn">
+                            <i class="fas fa-plus"></i> Nouvelle parcelle
+                        </button>
+                    </div>
+                    <div class="filters">
+                        <div class="filter-group">
+                            <label for="filterVariety">Variété</label>
+                            <select id="filterVariety">
+                                <option>Toutes</option>
+                                <option>Noix de Grenoble</option>
+                                <option>Noix de Périgord</option>
+                                <option>Franquette</option>
+                                <option>Mayette</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="filterStatus">Statut</label>
+                            <select id="filterStatus">
+                                <option>Tous</option>
+                                <option>En production</option>
+                                <option>En conversion</option>
+                                <option>Nouvelle plantation</option>
+                                <option>En entretien</option>
+                                <option>Inactive</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="filterYear">Plantation</label>
+                            <select id="filterYear">
+                                <option>Toutes années</option>
+                                <option>2023</option>
+                                <option>2022</option>
+                                <option>2021</option>
+                                <option>2020</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="parcels-grid" id="parcelsContainer">
+                    <!-- Les parcelles seront ajoutées dynamiquement ici -->
+                </div>
+            </main>
+        </div>
+    </div>
+    
+    <!-- Modal d'ajout/modification de parcelle -->
+    <div class="modal" id="parcelModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">Ajouter une nouvelle parcelle</h3>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            <form id="parcelForm">
+                <input type="hidden" id="parcelId">
+                <div class="form-group">
+                    <label for="parcelName">Nom de la parcelle</label>
+                    <input type="text" id="parcelName" required>
+                </div>
+                <div class="form-group">
+                    <label for="parcelVariety">Variété de noix</label>
+                    <select id="parcelVariety" required>
+                        <option value="">Sélectionner...</option>
+                        <option>Noix de Grenoble</option>
+                        <option>Noix de Périgord</option>
+                        <option>Franquette</option>
+                        <option>Mayette</option>
+                        <option>Autre</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="parcelSize">Superficie (ha)</label>
+                    <input type="number" id="parcelSize" step="0.01" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="parcelYear">Année de plantation</label>
+                    <input type="number" id="parcelYear" min="1900" max="2099" required>
+                </div>
+                <div class="form-group">
+                    <label for="parcelStatus">Statut</label>
+                    <select id="parcelStatus" required>
+                        <option value="">Sélectionner...</option>
+                        <option>En production</option>
+                        <option>En conversion</option>
+                        <option>Nouvelle plantation</option>
+                        <option>En entretien</option>
+                        <option>Inactive</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="parcelLocation">Localisation</label>
+                    <input type="text" id="parcelLocation" required>
+                </div>
+                <div class="form-group">
+                    <label for="parcelNotes">Notes</label>
+                    <textarea id="parcelNotes"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn" id="cancelBtn">Annuler</button>
+                    <button type="submit" class="btn btn-success">Enregistrer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>Copyright © 2023 Ferme de Noix | Tous droits réservés | <a href="#">Mentions légales</a></p>
+    </footer>
+
+    <script src="parcelle.js"></script>
+</body>
+</html>

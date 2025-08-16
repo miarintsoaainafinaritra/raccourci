@@ -1,0 +1,343 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Employés - Ferme de Noix</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    <link rel="stylesheet" href="gestionaire.css">
+   <link rel="stylesheet" href="employe.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <div class="logo">
+                <h1>🌰FERME DE NOIX</h1>
+                <p>Production Bio depuis 1985</p>
+            </div>
+            <div class="admin-info">
+                <p><i class="fas fa-map-marker-alt"></i> Ferme des Coteaux</p>
+                <p><i class="fas fa-user-shield"></i> Admin Agriculteur</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Sidebar Navigation -->
+            <aside class="sidebar">
+                <div class="menu-section">
+                  <h3><i class="fas fa-seedling"></i> Gestion de la Ferme</h3>
+                    <ul class="menu">
+                        <li><a href="entre.html"><i class="fas fa-tachometer-alt"></i> Tableau de Bord</a></li>
+                        <li class="active"><a href="commandes.html"><i class="fas fa-shopping-basket"></i> Commandes</a></li>
+                        <li><a href="profile.html"><i class="fas fa-user"></i> Profil</a></li>
+                        <li><a href="gestionaire.html"><i class="fas fa-cogs"></i> Gestion Fermière</a></li>
+                        <li><a href="verger.html"><i class="fas fa-tree"></i> Gestion des Vergers</a></li>
+                        <li><a href="suivi.html"><i class="fas fa-clipboard-check"></i> Suivi Récolte</a></li>
+                        <li><a href="parcelle.html"><i class="fas fa-map-marked-alt"></i> Gestion Parcelles</a></li>
+                        <li><a href="#"><i class="fas fa-seedling"></i> Variétés de Noix</a></li>
+                        <li><a href="#"><i class="fas fa-box-open"></i> Gestion Stock</a></li>
+                    </ul>
+                </div>
+
+                <div class="profile-section">
+                    <ul class="profile-menu">
+                        <li><a href="cretificats.html"><i class="fas fa-print"></i> Certificats Bio</a></li>
+                        <li><a href="finaciere.html"><i class="fas fa-euro-sign"></i> Gestion Financière</a></li>
+                        <li><a href="calendrier.html"><i class="fas fa-calendar-alt"></i> Calendrier Agricole</a></li>
+                        <li><a href="materiel.html"><i class="fas fa-tractor"></i> Matériel Agricole</a></li>
+                        <li><a href="employe.html"><i class="fas fa-users"></i> Employés</a></li>
+                      
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <h2><i class="fas fa-users"></i> Gestion des Employés</h2>
+                
+                <div class="view-options">
+                    <div class="view-option active" onclick="changeView('card')">
+                        <i class="fas fa-th-large"></i> Vue Cartes
+                    </div>
+                    <div class="view-option" onclick="changeView('table')">
+                        <i class="fas fa-table"></i> Vue Tableau
+                    </div>
+                </div>
+
+                <div class="tab">
+                    <button class="tablinks active" onclick="openTab('activeEmployees')">Employés Actifs</button>
+                    <button class="tablinks" onclick="openTab('inactiveEmployees')">Anciens Employés</button>
+                </div>
+
+                <div id="activeEmployees" class="tabcontent" style="display: block;">
+                    <button class="btn btn-add" onclick="openModal('newEmployeeModal')">
+                        <i class="fas fa-plus"></i> Ajouter un employé
+                    </button>
+                    <button class="btn" style="background-color: var(--info-color); color: white;" onclick="exportEmployeesToCSV()">
+                        <i class="fas fa-file-export"></i> Exporter en CSV
+                    </button>
+
+                    <!-- Vue Cartes -->
+                    <div id="cardView" class="employee-cards">
+                        <div class="employee-card">
+                            <div class="employee-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="employee-details">
+                                <div class="employee-name">Jean Dupont</div>
+                                <div class="employee-position">Responsable Verger</div>
+                                <div class="employee-info">
+                                    <div class="employee-info-item">
+                                        <i class="fas fa-phone"></i> 06 12 34 56 78
+                                    </div>
+                                    <div class="employee-info-item">
+                                        <i class="fas fa-envelope"></i> jean.dupont@fermedenoix.fr
+                                    </div>
+                                    <div class="employee-info-item">
+                                        <i class="fas fa-calendar-alt"></i> Embauche: 15/03/2018
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="status-badge status-active">Actif</span>
+                                </div>
+                            </div>
+                            <div class="employee-actions">
+                                <button class="btn btn-edit" onclick="openEditEmployeeModal(this)"><i class="fas fa-edit"></i></button>
+                                <button class="btn btn-delete" onclick="deactivateEmployee(this)"><i class="fas fa-user-slash"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="employee-card">
+                            <div class="employee-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="employee-details">
+                                <div class="employee-name">Marie Lambert</div>
+                                <div class="employee-position">Ouvrière Agricole</div>
+                                <div class="employee-info">
+                                    <div class="employee-info-item">
+                                        <i class="fas fa-phone"></i> 06 98 76 54 32
+                                    </div>
+                                    <div class="employee-info-item">
+                                        <i class="fas fa-envelope"></i> marie.lambert@fermedenoix.fr
+                                    </div>
+                                    <div class="employee-info-item">
+                                        <i class="fas fa-calendar-alt"></i> Embauche: 22/06/2020
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="status-badge status-vacation">Congés</span>
+                                </div>
+                            </div>
+                            <div class="employee-actions">
+                                <button class="btn btn-edit" onclick="openEditEmployeeModal(this)"><i class="fas fa-edit"></i></button>
+                                <button class="btn btn-delete" onclick="deactivateEmployee(this)"><i class="fas fa-user-slash"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Vue Tableau (cachée par défaut) -->
+                    <div id="tableView" class="employee-table" style="display: none;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Poste</th>
+                                    <th>Téléphone</th>
+                                    <th>Email</th>
+                                    <th>Date d'embauche</th>
+                                    <th>Statut</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Jean Dupont</td>
+                                    <td>Responsable Verger</td>
+                                    <td>06 12 34 56 78</td>
+                                    <td>jean.dupont@fermedenoix.fr</td>
+                                    <td>15/03/2018</td>
+                                    <td><span class="status-badge status-active">Actif</span></td>
+                                    <td>
+                                        <button class="btn btn-edit" onclick="openEditEmployeeModal(this)"><i class="fas fa-edit"></i></button>
+                                        <button class="btn btn-delete" onclick="deactivateEmployee(this)"><i class="fas fa-user-slash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Marie Lambert</td>
+                                    <td>Ouvrière Agricole</td>
+                                    <td>06 98 76 54 32</td>
+                                    <td>marie.lambert@fermedenoix.fr</td>
+                                    <td>22/06/2020</td>
+                                    <td><span class="status-badge status-vacation">Congés</span></td>
+                                    <td>
+                                        <button class="btn btn-edit" onclick="openEditEmployeeModal(this)"><i class="fas fa-edit"></i></button>
+                                        <button class="btn btn-delete" onclick="deactivateEmployee(this)"><i class="fas fa-user-slash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="inactiveEmployees" class="tabcontent">
+                    <h3>Anciens Employés</h3>
+                    <div class="employee-cards">
+                        <div class="employee-card" style="opacity: 0.7;">
+                            <div class="employee-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="employee-details">
+                                <div class="employee-name">Pierre Martin</div>
+                                <div class="employee-position">Ancien Responsable Récolte</div>
+                                <div class="employee-info">
+                                    <div class="employee-info-item">
+                                        <i class="fas fa-calendar-alt"></i> Période: 10/05/2015 - 30/09/2022
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="status-badge status-inactive">Inactif</span>
+                                </div>
+                            </div>
+                            <div class="employee-actions">
+                                <button class="btn" style="background-color: var(--warning-color); color: white;" onclick="reactivateEmployee(this)">
+                                    <i class="fas fa-user-check"></i> Réactiver
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal pour ajouter un nouvel employé -->
+        <div id="newEmployeeModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('newEmployeeModal')">&times;</span>
+                <h2><i class="fas fa-user-plus"></i> Nouvel Employé</h2>
+                <form id="newEmployeeForm">
+                    <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                        <div style="flex: 1;">
+                            <label>Prénom</label>
+                            <input type="text" name="firstName" placeholder="Prénom" required>
+                        </div>
+                        <div style="flex: 1;">
+                            <label>Nom</label>
+                            <input type="text" name="lastName" placeholder="Nom" required>
+                        </div>
+                    </div>
+                    
+                    <label>Poste</label>
+                    <select name="position" required>
+                        <option value="">Sélectionner un poste</option>
+                        <option value="Responsable Verger">Responsable Verger</option>
+                        <option value="Ouvrier Agricole">Ouvrier Agricole</option>
+                        <option value="Technicien Agricole">Technicien Agricole</option>
+                        <option value="Responsable Récolte">Responsable Récolte</option>
+                        <option value="Chauffeur">Chauffeur</option>
+                        <option value="Autre">Autre</option>
+                    </select>
+                    
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="Email professionnel" required>
+                    
+                    <label>Téléphone</label>
+                    <input type="tel" name="phone" placeholder="Numéro de téléphone" required>
+                    
+                    <label>Date d'embauche</label>
+                    <input type="date" name="hireDate" required>
+                    
+                    <label>Statut</label>
+                    <select name="status" required>
+                        <option value="Actif">Actif</option>
+                        <option value="Congés">Congés</option>
+                        <option value="Formation">En formation</option>
+                    </select>
+                    
+                    <label>Notes</label>
+                    <textarea name="notes" placeholder="Informations supplémentaires"></textarea>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-add" onclick="saveEmployee()">
+                            <i class="fas fa-save"></i> Enregistrer
+                        </button>
+                        <button type="button" class="btn btn-delete" onclick="closeModal('newEmployeeModal')">
+                            <i class="fas fa-times"></i> Annuler
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Modal pour modifier un employé -->
+        <div id="editEmployeeModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('editEmployeeModal')">&times;</span>
+                <h2><i class="fas fa-user-edit"></i> Modifier Employé</h2>
+                <form id="editEmployeeForm">
+                    <input type="hidden" name="employeeId">
+                    <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                        <div style="flex: 1;">
+                            <label>Prénom</label>
+                            <input type="text" name="firstName" placeholder="Prénom" required>
+                        </div>
+                        <div style="flex: 1;">
+                            <label>Nom</label>
+                            <input type="text" name="lastName" placeholder="Nom" required>
+                        </div>
+                    </div>
+                    
+                    <label>Poste</label>
+                    <select name="position" required>
+                        <option value="">Sélectionner un poste</option>
+                        <option value="Responsable Verger">Responsable Verger</option>
+                        <option value="Ouvrier Agricole">Ouvrier Agricole</option>
+                        <option value="Technicien Agricole">Technicien Agricole</option>
+                        <option value="Responsable Récolte">Responsable Récolte</option>
+                        <option value="Chauffeur">Chauffeur</option>
+                        <option value="Autre">Autre</option>
+                    </select>
+                    
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="Email professionnel" required>
+                    
+                    <label>Téléphone</label>
+                    <input type="tel" name="phone" placeholder="Numéro de téléphone" required>
+                    
+                    <label>Date d'embauche</label>
+                    <input type="date" name="hireDate" required>
+                    
+                    <label>Statut</label>
+                    <select name="status" required>
+                        <option value="Actif">Actif</option>
+                        <option value="Congés">Congés</option>
+                        <option value="Formation">En formation</option>
+                        <option value="Inactif">Inactif</option>
+                    </select>
+                    
+                    <label>Notes</label>
+                    <textarea name="notes" placeholder="Informations supplémentaires"></textarea>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-add" onclick="updateEmployee()">
+                            <i class="fas fa-save"></i> Mettre à jour
+                        </button>
+                        <button type="button" class="btn btn-delete" onclick="closeModal('editEmployeeModal')">
+                            <i class="fas fa-times"></i> Annuler
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+         <footer>
+            <p>Copyright © 2023 Ferme de Noix | Tous droits réservés | <a href="#">Mentions légales</a></p>
+        </footer>
+    </div>
+
+   <script src="employe.js"></script>
+</body>
+</html>

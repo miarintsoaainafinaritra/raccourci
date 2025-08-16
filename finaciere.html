@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion Financière - Ferme de Noix</title>
+    <link rel="stylesheet" href="gestionaire.css">
+    <link rel="stylesheet" href="finaciere.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <h1>🌰 FERME DE NOIX</h1>
+                <p>Production Bio depuis 1985</p>
+            </div>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="admin-info">
+                <p><i class="fas fa-map-marker-alt"></i> Ferme des Coteaux</p>
+                <p><i class="fas fa-user-shield"></i> Admin Agriculteur</p>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <aside class="sidebar" id="sidebar">
+                <div class="menu-section">
+                    <h3><i class="fas fa-seedling"></i> Gestion de la Ferme</h3>
+                    <ul class="menu">
+                        <li><a href="commandes.html"><i class="fas fa-tachometer-alt"></i> Tableau de Bord</a></li>
+                        <li><a href="entre.html"><i class="fas fa-shopping-basket"></i> Commandes</a></li>
+                        <li><a href="profile.html"><i class="fas fa-user"></i> Profil</a></li>
+                        <li><a href="gestionaire.html"><i class="fas fa-cogs"></i> Gestion Fermière</a></li>
+                    </ul>
+                </div>
+
+                <div class="profile-section">
+                    <ul class="profile-menu menu">
+                        <li><a href="cretificats.html"><i class="fas fa-certificate"></i> Certificats Bio</a></li>
+                        <li class="active"><a href="finaciere.html"><i class="fas fa-euro-sign"></i> Gestion Financière</a></li>
+                        <li><a href="analytics.html"><i class="fas fa-chart-line"></i> Analyses</a></li>
+                        <li><a href="settings.html"><i class="fas fa-cog"></i> Paramètres</a></li>
+                    </ul>
+                </div>
+            </aside>
+
+            <main class="content">
+                <!-- Statistiques financières en temps réel -->
+                <div class="stats-container">
+                    <div class="stat-card hover-card">
+                        <div class="stat-header">
+                            <span class="stat-title">Revenus ce mois</span>
+                            <i class="fas fa-euro-sign stat-icon"></i>
+                        </div>
+                        <div class="stat-value" id="monthlyRevenue">12,450 €</div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+8% vs mois dernier</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card hover-card">
+                        <div class="stat-header">
+                            <span class="stat-title">Dépenses ce mois</span>
+                            <i class="fas fa-file-invoice-dollar stat-icon"></i>
+                        </div>
+                        <div class="stat-value" id="monthlyExpenses">6,780 €</div>
+                        <div class="stat-change negative">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+3% vs mois dernier</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card hover-card">
+                        <div class="stat-header">
+                            <span class="stat-title">Bénéfice net</span>
+                            <i class="fas fa-chart-line stat-icon"></i>
+                        </div>
+                        <div class="stat-value" id="netProfit">5,670 €</div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+15% vs mois dernier</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card hover-card">
+                        <div class="stat-header">
+                            <span class="stat-title">Trésorerie</span>
+                            <i class="fas fa-piggy-bank stat-icon"></i>
+                        </div>
+                        <div class="stat-value" id="cashFlow">24,320 €</div>
+                        <div class="stat-change neutral">
+                            <i class="fas fa-equals"></i>
+                            <span>Stable</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="management-page">
+                    <div class="page-header">
+                        <h2 class="page-title">
+                            <i class="fas fa-euro-sign"></i> 
+                            Gestion Financière
+                        </h2>
+                        <div class="toolbar">
+                            <button class="btn btn-primary" id="addTransactionBtn">
+                                <i class="fas fa-plus"></i> Nouvelle Transaction
+                            </button>
+                            <button class="btn btn-secondary" id="generateReportBtn">
+                                <i class="fas fa-file-pdf"></i> Générer Rapport
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="filters-section">
+                        <div class="filter-group">
+                            <label class="filter-label"><i class="fas fa-search"></i> Recherche</label>
+                            <input type="text" id="searchFinancialInput" class="filter-control" placeholder="Description, montant...">
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label"><i class="fas fa-filter"></i> Type</label>
+                            <select id="typeFilter" class="filter-control">
+                                <option value="">Tous les types</option>
+                                <option value="income">Revenu</option>
+                                <option value="expense">Dépense</option>
+                                <option value="investment">Investissement</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label"><i class="fas fa-calendar"></i> Période</label>
+                            <select id="periodFilter" class="filter-control">
+                                <option value="current_month">Ce mois</option>
+                                <option value="last_month">Mois dernier</option>
+                                <option value="current_quarter">Ce trimestre</option>
+                                <option value="current_year">Cette année</option>
+                                <option value="custom">Personnalisée</option>
+                            </select>
+                        </div>
+                        <div class="filter-group date-range-group" id="dateRangeGroup" style="display:none;">
+                            <label class="filter-label"><i class="fas fa-calendar-alt"></i> Du</label>
+                            <input type="date" id="startDate" class="filter-control">
+                            <label class="filter-label"><i class="fas fa-calendar-alt"></i> Au</label>
+                            <input type="date" id="endDate" class="filter-control">
+                        </div>
+                        <div class="filter-group">
+                            <button class="btn btn-primary" id="exportFinancialBtn">
+                                <i class="fas fa-download"></i> Exporter
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="tabs-container">
+                        <div class="tabs">
+                            <button class="tab-btn active" data-tab="transactions">Transactions</button>
+                            <button class="tab-btn" data-tab="categories">Catégories</button>
+                            <button class="tab-btn" data-tab="budgets">Budgets</button>
+                            <button class="tab-btn" data-tab="reports">Rapports</button>
+                        </div>
+                        <div class="tab-content active" id="transactionsTab">
+                            <div class="table-responsive">
+                                <table class="management-table" id="financialTable">
+                                    <thead>
+                                        <tr>
+                                            <th><i class="fas fa-calendar"></i> Date</th>
+                                            <th><i class="fas fa-file-alt"></i> Description</th>
+                                            <th><i class="fas fa-tags"></i> Catégorie</th>
+                                            <th><i class="fas fa-euro-sign"></i> Montant</th>
+                                            <th><i class="fas fa-exchange-alt"></i> Type</th>
+                                            <th><i class="fas fa-receipt"></i> Facture</th>
+                                            <th><i class="fas fa-cogs"></i> Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="financialTableBody">
+                                        <!-- Les données seront chargées dynamiquement -->
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="pagination" id="financialPagination">
+                                <button class="page-btn" id="prevPageBtn"><i class="fas fa-chevron-left"></i></button>
+                                <span class="page-info" id="pageInfo">Page 1 sur 3</span>
+                                <button class="page-btn" id="nextPageBtn"><i class="fas fa-chevron-right"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="tab-content" id="categoriesTab">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4><i class="fas fa-tags"></i> Catégories de dépenses</h4>
+                                    <button class="btn btn-primary btn-sm" id="addCategoryBtn">
+                                        <i class="fas fa-plus"></i> Ajouter
+                                    </button>
+                                </div>
+                                <div class="card-body">
+                                    <div class="categories-grid" id="categoriesGrid">
+                                        <!-- Les catégories seront chargées dynamiquement -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-content" id="budgetsTab">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4><i class="fas fa-wallet"></i> Budgets par catégorie</h4>
+                                    <button class="btn btn-primary btn-sm" id="addBudgetBtn">
+                                        <i class="fas fa-plus"></i> Ajouter
+                                    </button>
+                                </div>
+                                <div class="card-body">
+                                    <div class="budget-progress-container" id="budgetsContainer">
+                                        <!-- Les budgets seront chargés dynamiquement -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-content" id="reportsTab">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4><i class="fas fa-chart-pie"></i> Rapports financiers</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="chart-container">
+                                        <canvas id="financialChart"></canvas>
+                                    </div>
+                                    
+                                    <div class="reports-grid">
+                                        <div class="report-card">
+                                            <div class="report-icon">
+                                                <i class="fas fa-chart-line"></i>
+                                            </div>
+                                            <div class="report-title">Bilan mensuel</div>
+                                            <button class="btn btn-secondary btn-sm">Générer</button>
+                                        </div>
+                                        <div class="report-card">
+                                            <div class="report-icon">
+                                                <i class="fas fa-chart-pie"></i>
+                                            </div>
+                                            <div class="report-title">Analyse des dépenses</div>
+                                            <button class="btn btn-secondary btn-sm">Générer</button>
+                                        </div>
+                                        <div class="report-card">
+                                            <div class="report-icon">
+                                                <i class="fas fa-file-invoice-dollar"></i>
+                                            </div>
+                                            <div class="report-title">Relevé annuel</div>
+                                            <button class="btn btn-secondary btn-sm">Générer</button>
+                                        </div>
+                                        <div class="report-card">
+                                            <div class="report-icon">
+                                                <i class="fas fa-balance-scale"></i>
+                                            </div>
+                                            <div class="report-title">Bilan trimestriel</div>
+                                            <button class="btn btn-secondary btn-sm">Générer</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal pour ajouter/modifier une transaction -->
+    <div id="transactionModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="transactionModalTitle">
+                    <i class="fas fa-plus-circle"></i> Nouvelle Transaction
+                </h3>
+                <span class="close-modal" id="closeTransactionModal">×</span>
+            </div>
+            <form id="transactionForm">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label class="form-label" for="transactionDate">
+                            <i class="fas fa-calendar"></i> Date
+                        </label>
+                        <input type="date" id="transactionDate" class="form-control" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="form-label" for="transactionAmount">
+                            <i class="fas fa-euro-sign"></i> Montant
+                        </label>
+                        <input type="number" id="transactionAmount" class="form-control" min="0" step="0.01" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="transactionDescription">
+                        <i class="fas fa-file-alt"></i> Description
+                    </label>
+                    <input type="text" id="transactionDescription" class="form-control" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label class="form-label" for="transactionType">
+                            <i class="fas fa-exchange-alt"></i> Type
+                        </label>
+                        <select id="transactionType" class="form-control" required>
+                            <option value="">Sélectionner un type</option>
+                            <option value="income">Revenu</option>
+                            <option value="expense">Dépense</option>
+                            <option value="investment">Investissement</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="form-label" for="transactionCategory">
+                            <i class="fas fa-tag"></i> Catégorie
+                        </label>
+                        <select id="transactionCategory" class="form-control" required>
+                            <option value="">Sélectionner une catégorie</option>
+                            <option value="sales">Ventes</option>
+                            <option value="supplies">Fournitures</option>
+                            <option value="staff">Personnel</option>
+                            <option value="equipment">Équipement</option>
+                            <option value="certifications">Certifications</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="transactionInvoice">
+                        <i class="fas fa-file-invoice"></i> Numéro de facture
+                    </label>
+                    <input type="text" id="transactionInvoice" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="transactionNotes">
+                        <i class="fas fa-sticky-note"></i> Notes
+                    </label>
+                    <textarea id="transactionNotes" class="form-control" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="transactionAttachment">
+                        <i class="fas fa-paperclip"></i> Joindre un fichier
+                    </label>
+                    <input type="file" id="transactionAttachment" class="form-control">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelTransactionBtn">
+                        <i class="fas fa-times"></i> Annuler
+                    </button>
+                    <button type="submit" class="btn btn-primary" id="saveTransactionBtn">
+                        <i class="fas fa-save"></i> Enregistrer
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal pour ajouter/modifier une catégorie -->
+    <div id="categoryModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="categoryModalTitle">
+                    <i class="fas fa-tag"></i> Nouvelle Catégorie
+                </h3>
+                <span class="close-modal" id="closeCategoryModal">×</span>
+            </div>
+            <form id="categoryForm">
+                <div class="form-group">
+                    <label class="form-label" for="categoryName">
+                        <i class="fas fa-font"></i> Nom de la catégorie
+                    </label>
+                    <input type="text" id="categoryName" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="categoryColor">
+                        <i class="fas fa-palette"></i> Couleur
+                    </label>
+                    <input type="color" id="categoryColor" class="form-control" value="#4a7c59">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelCategoryBtn">
+                        <i class="fas fa-times"></i> Annuler
+                    </button>
+                    <button type="submit" class="btn btn-primary" id="saveCategoryBtn">
+                        <i class="fas fa-save"></i> Enregistrer
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal pour ajouter/modifier un budget -->
+    <div id="budgetModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="budgetModalTitle">
+                    <i class="fas fa-wallet"></i> Nouveau Budget
+                </h3>
+                <span class="close-modal" id="closeBudgetModal">×</span>
+            </div>
+            <form id="budgetForm">
+                <div class="form-group">
+                    <label class="form-label" for="budgetCategory">
+                        <i class="fas fa-tag"></i> Catégorie
+                    </label>
+                    <select id="budgetCategory" class="form-control" required>
+                        <option value="">Sélectionner une catégorie</option>
+                        <option value="sales">Ventes</option>
+                        <option value="supplies">Fournitures</option>
+                        <option value="staff">Personnel</option>
+                        <option value="equipment">Équipement</option>
+                        <option value="certifications">Certifications</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="budgetAmount">
+                        <i class="fas fa-euro-sign"></i> Montant du budget
+                    </label>
+                    <input type="number" id="budgetAmount" class="form-control" min="0" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="budgetPeriod">
+                        <i class="fas fa-calendar"></i> Période
+                    </label>
+                    <select id="budgetPeriod" class="form-control" required>
+                        <option value="monthly">Mensuel</option>
+                        <option value="quarterly">Trimestriel</option>
+                        <option value="yearly">Annuel</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelBudgetBtn">
+                        <i class="fas fa-times"></i> Annuler
+                    </button>
+                    <button type="submit" class="btn btn-primary" id="saveBudgetBtn">
+                        <i class="fas fa-save"></i> Enregistrer
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Copyright © 2023 Ferme de Noix | Tous droits réservés | <a href="#">Mentions légales</a></p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="finaciere.js"></script>
+</body>
+</html>

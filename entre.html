@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferme de Noix - Production et Vente</title>
+    <link rel="stylesheet" href="entre.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <div class="logo">
+                <h1>🌰FERME DE NOIX</h1>
+                <p>Production Bio depuis 1985</p>
+            </div>
+            <div class="admin-info">
+                <p><i class="fas fa-map-marker-alt"></i> Ferme des Coteaux</p>
+                <p><i class="fas fa-user-shield"></i> Admin Agriculteur</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Sidebar Navigation -->
+            <aside class="sidebar">
+                <div class="menu-section">
+                  <h3><i class="fas fa-seedling"></i> Gestion de la Ferme</h3>
+                    <ul class="menu">
+                        <li><a href="#"><i class="fas fa-tachometer-alt"></i> Tableau de Bord</a></li>
+                        <li class="active"><a href="commandes.html"><i class="fas fa-shopping-basket"></i> Commandes</a></li>
+                        <li><a href="profile.html"><i class="fas fa-user"></i> Profil</a></li>
+                        <li><a href="gestionaire.html"><i class="fas fa-cogs"></i> Gestion Fermière</a></li>
+                        <li><a href="verger.html"><i class="fas fa-tree"></i> Gestion des Vergers</a></li>
+                        <li><a href="suivi.html"><i class="fas fa-clipboard-check"></i> Suivi Récolte</a></li>
+                        <li><a href="parcelle.html"><i class="fas fa-map-marked-alt"></i> Gestion Parcelles</a></li>
+                        <li><a href="varieter.html"><i class="fas fa-seedling"></i> Variétés de Noix</a></li>
+                        <li><a href="stock.html"><i class="fas fa-box-open"></i> Gestion Stock</a></li>
+                    </ul>
+                </div>
+
+                <div class="profile-section">
+                    <ul class="profile-menu">
+                        <li><a href="cretificats.html"><i class="fas fa-print"></i> Certificats Bio</a></li>
+                        <li><a href="finaciere.html"><i class="fas fa-euro-sign"></i> Gestion Financière</a></li>
+                        <li><a href="calendrier.html"><i class="fas fa-calendar-alt"></i> Calendrier Agricole</a></li>
+                        <li><a href="materiel.html"><i class="fas fa-tractor"></i> Matériel Agricole</a></li>
+                        <li><a href="employe.html"><i class="fas fa-users"></i> Employés</a></li>
+                       
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Content Area -->
+            <main class="content">
+                <div class="dashboard">
+                    <h2>Tableau de Bord</h2>
+                    <div class="stats">
+                        <div class="stat-card">
+                            <i class="fas fa-tree"></i>
+                            <h3>1250</h3>
+                            <p>Noyers en production</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-box-open"></i>
+                            <h3>850 kg</h3>
+                            <p>Stock disponible</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-shopping-cart"></i>
+                            <h3>24</h3>
+                            <p>Commandes ce mois</p>
+                        </div>
+                    </div>
+
+                    <div class="recent-orders">
+                        <h3>Dernières Commandes</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>N° Commande</th>
+                                    <th>Client</th>
+                                    <th>Produit</th>
+                                    <th>Statut</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#1254</td>
+                                    <td>Épicerie Bio Paris</td>
+                                    <td>Noix Grenoble 5kg</td>
+                                    <td><span class="status shipped">Expédiée</span></td>
+                                </tr>
+                                <tr>
+                                    <td>#1253</td>
+                                    <td>Restaurant La Table</td>
+                                    <td>Noix Cerneaux 10kg</td>
+                                    <td><span class="status processing">En préparation</span></td>
+                                </tr>
+                                <tr>
+                                    <td>#1252</td>
+                                    <td>Particulier - Lyon</td>
+                                    <td>Mélange Noix 3kg</td>
+                                    <td><span class="status delivered">Livrée</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>Copyright © 2023 Ferme de Noix | Tous droits réservés | <a href="#">Mentions légales</a></p>
+        </footer>
+    </div>
+
+    <script src="entre.js"></script>
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion du Matériel Agricole - Ferme de Noix</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    <link rel="stylesheet" href="gestionaire.css">
+    <link rel="stylesheet" href="materiel.css">
+</head>
+<body>
+   <div class="container">
+        <!-- Header Section -->
+        <header>
+            <div class="logo">
+                <h1>🌰FERME DE NOIX</h1>
+                <p>Production Bio depuis 1985</p>
+            </div>
+            <div class="admin-info">
+                <p><i class="fas fa-map-marker-alt"></i> Ferme des Coteaux</p>
+                <p><i class="fas fa-user-shield"></i> Admin Agriculteur</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Sidebar Navigation -->
+            <aside class="sidebar">
+                <div class="menu-section">
+                  <h3><i class="fas fa-seedling"></i> Gestion de la Ferme</h3>
+                    <ul class="menu">
+                        <li><a href="entre.html"><i class="fas fa-tachometer-alt"></i> Tableau de Bord</a></li>
+                        <li class="active"><a href="commandes.html"><i class="fas fa-shopping-basket"></i> Commandes</a></li>
+                        <li><a href="profile.html"><i class="fas fa-user"></i> Profil</a></li>
+                        <li><a href="gestionaire.html"><i class="fas fa-cogs"></i> Gestion Fermière</a></li>
+                        <li><a href="verger.html"><i class="fas fa-tree"></i> Gestion des Vergers</a></li>
+                        <li><a href="suivi.html"><i class="fas fa-clipboard-check"></i> Suivi Récolte</a></li>
+                        <li><a href="parcelle.html"><i class="fas fa-map-marked-alt"></i> Gestion Parcelles</a></li>
+                        <li><a href="varieter.html"><i class="fas fa-seedling"></i> Variétés de Noix</a></li>
+                        <li><a href="stock.html"><i class="fas fa-box-open"></i> Gestion Stock</a></li>
+                    </ul>
+                </div>
+
+                <div class="profile-section">
+                    <ul class="profile-menu">
+                        <li><a href="cretificats.html"><i class="fas fa-print"></i> Certificats Bio</a></li>
+                        <li><a href="finaciere.html"><i class="fas fa-euro-sign"></i> Gestion Financière</a></li>
+                        <li><a href="calendrier.html"><i class="fas fa-calendar-alt"></i> Calendrier Agricole</a></li>
+                        <li><a href="materiel.html"><i class="fas fa-tractor"></i> Matériel Agricole</a></li>
+                        <li><a href="employe.html"><i class="fas fa-users"></i> Employés</a></li>
+                       
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <h2>Gestion du Matériel Agricole</h2>
+                
+                <div class="tab">
+                    <button class="tablinks active" onclick="openTab('equipment')">Équipements</button>
+                    <button class="tablinks" onclick="openTab('trash')">Corbeille</button>
+                </div>
+
+                <div id="equipment" class="tabcontent" style="display: block;">
+                    <button class="btn btn-add" onclick="openModal('newEquipmentModal')">
+                        <i class="fas fa-plus"></i> Ajouter un équipement
+                    </button>
+                    <table class="equipment-table">
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Type</th>
+                                <th>Date d'achat</th>
+                                <th>État</th>
+                                <th>Coût (€)</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="equipmentTableBody">
+                            <tr>
+                                <td>Tracteur John Deere</td>
+                                <td>Tracteur</td>
+                                <td>2020-03-15</td>
+                                <td><span class="status-badge" style="background-color: #4CAF50;">Bon</span></td>
+                                <td>25,000</td>
+                                <td>
+                                    <button class="btn btn-edit" onclick="openEditModal(this)"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-delete" onclick="moveToTrash(this)"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Moissonneuse</td>
+                                <td>Moissonneuse</td>
+                                <td>2018-06-22</td>
+                                <td><span class="status-badge" style="background-color: #FFC107;">Usagé</span></td>
+                                <td>40,000</td>
+                                <td>
+                                    <button class="btn btn-edit" onclick="openEditModal(this)"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-delete" onclick="moveToTrash(this)"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Pulvérisateur</td>
+                                <td>Pulvérisateur</td>
+                                <td>2021-05-10</td>
+                                <td><span class="status-badge" style="background-color: #4CAF50;">Neuf</span></td>
+                                <td>8,500</td>
+                                <td>
+                                    <button class="btn btn-edit" onclick="openEditModal(this)"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-delete" onclick="moveToTrash(this)"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="trash" class="tabcontent">
+                    <h3>Corbeille</h3>
+                    <table class="trash-table">
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Type</th>
+                                <th>Date d'achat</th>
+                                <th>État</th>
+                                <th>Coût (€)</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="trashTableBody">
+                            <!-- Les équipements supprimés apparaîtront ici -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal pour ajouter un nouvel équipement -->
+        <div id="newEquipmentModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('newEquipmentModal')">&times;</span>
+                <h2>Nouvel Équipement</h2>
+                <form id="newEquipmentForm">
+                    <label>Nom</label>
+                    <input type="text" name="name" placeholder="Nom de l'équipement" required>
+                    
+                    <label>Type</label>
+                    <select name="type" required>
+                        <option value="">Sélectionner un type</option>
+                        <option value="Tracteur">Tracteur</option>
+                        <option value="Moissonneuse">Moissonneuse</option>
+                        <option value="Semoir">Semoir</option>
+                        <option value="Pulvérisateur">Pulvérisateur</option>
+                        <option value="Autre">Autre</option>
+                    </select>
+                    
+                    <label>Date d'achat</label>
+                    <input type="date" name="purchaseDate" required>
+                    
+                    <label>État</label>
+                    <select name="condition" required>
+                        <option value="">Sélectionner un état</option>
+                        <option value="Neuf">Neuf</option>
+                        <option value="Bon">Bon</option>
+                        <option value="Usagé">Usagé</option>
+                        <option value="À réparer">À réparer</option>
+                    </select>
+                    
+                    <label>Coût (€)</label>
+                    <input type="number" name="cost" placeholder="Coût en euros" required>
+                    
+                    <label>Notes</label>
+                    <textarea name="notes" placeholder="Notes supplémentaires"></textarea>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-add" onclick="saveEquipment('newEquipmentForm', 'equipmentTableBody')">
+                            <i class="fas fa-save"></i> Enregistrer
+                        </button>
+                        <button type="button" class="btn btn-delete" onclick="closeModal('newEquipmentModal')">
+                            <i class="fas fa-times"></i> Annuler
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Modal pour modifier un équipement -->
+        <div id="editEquipmentModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('editEquipmentModal')">&times;</span>
+                <h2>Modifier l'Équipement</h2>
+                <form id="editEquipmentForm">
+                    <input type="hidden" name="rowIndex">
+                    <label>Nom</label>
+                    <input type="text" name="name" placeholder="Nom de l'équipement" required>
+                    
+                    <label>Type</label>
+                    <select name="type" required>
+                        <option value="">Sélectionner un type</option>
+                        <option value="Tracteur">Tracteur</option>
+                        <option value="Moissonneuse">Moissonneuse</option>
+                        <option value="Semoir">Semoir</option>
+                        <option value="Pulvérisateur">Pulvérisateur</option>
+                        <option value="Autre">Autre</option>
+                    </select>
+                    
+                    <label>Date d'achat</label>
+                    <input type="date" name="purchaseDate" required>
+                    
+                    <label>État</label>
+                    <select name="condition" required>
+                        <option value="">Sélectionner un état</option>
+                        <option value="Neuf">Neuf</option>
+                        <option value="Bon">Bon</option>
+                        <option value="Usagé">Usagé</option>
+                        <option value="À réparer">À réparer</option>
+                    </select>
+                    
+                    <label>Coût (€)</label>
+                    <input type="number" name="cost" placeholder="Coût en euros" required>
+                    
+                    <label>Notes</label>
+                    <textarea name="notes" placeholder="Notes supplémentaires"></textarea>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-add" onclick="saveEditedEquipment()">
+                            <i class="fas fa-save"></i> Enregistrer
+                        </button>
+                        <button type="button" class="btn btn-delete" onclick="closeModal('editEquipmentModal')">
+                            <i class="fas fa-times"></i> Annuler
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+         <footer>
+        <p>Copyright © 2023 Ferme de Noix | Tous droits réservés | <a href="#">Mentions légales</a></p>
+    </footer>
+    </div>
+
+   <script src="materiel.js"></script>
+</body>
+</html>

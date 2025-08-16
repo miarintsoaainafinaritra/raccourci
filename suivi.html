@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suivi Récolte - Ferme de Noix</title>
+    <link rel="stylesheet" href="gestionaire.css">
+    <link rel="stylesheet" href="entre.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="suivi.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <div class="logo">
+                <h1>🌰FERME DE NOIX</h1>
+                <p>Production Bio depuis 1985</p>
+            </div>
+            <div class="admin-info">
+                <p><i class="fas fa-map-marker-alt"></i> Ferme des Coteaux</p>
+                <p><i class="fas fa-user-shield"></i> Admin Agriculteur</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Sidebar Navigation -->
+            <aside class="sidebar">
+                <div class="menu-section">
+                  <h3><i class="fas fa-seedling"></i> Gestion de la Ferme</h3>
+                    <ul class="menu">
+                        <li><a href="entre.html"><i class="fas fa-tachometer-alt"></i> Tableau de Bord</a></li>
+                        <li><a href="commandes.html"><i class="fas fa-shopping-basket"></i> Commandes</a></li>
+                        <li><a href="profile.html"><i class="fas fa-user"></i> Profil</a></li>
+                        <li><a href="gestionaire.html"><i class="fas fa-cogs"></i> Gestion Fermière</a></li>
+                        <li><a href="verger.html"><i class="fas fa-tree"></i> Gestion des Vergers</a></li>
+                        <li class="active"><a href="suivi.html"><i class="fas fa-clipboard-check"></i> Suivi Récolte</a></li>
+                        <li><a href="parcelle.html"><i class="fas fa-map-marked-alt"></i> Gestion Parcelles</a></li>
+                        <li><a href="varieter.html"><i class="fas fa-seedling"></i> Variétés de Noix</a></li>
+                        <li><a href="stock.html"><i class="fas fa-box-open"></i> Gestion Stock</a></li>
+                    </ul>
+                </div>
+
+                <div class="profile-section">
+                    <ul class="profile-menu">
+                        <li><a href="certificats.html"><i class="fas fa-print"></i> Certificats Bio</a></li>
+                        <li><a href="financiere.html"><i class="fas fa-euro-sign"></i> Gestion Financière</a></li>
+                        <li><a href="calendrier.html"><i class="fas fa-calendar-alt"></i> Calendrier Agricole</a></li>
+                        <li><a href="materiel.html"><i class="fas fa-tractor"></i> Matériel Agricole</a></li>
+                        <li><a href="employe.html"><i class="fas fa-users"></i> Employés</a></li>
+                    
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Content Area -->
+            <main class="content">
+                <div class="management-page">
+                    <div class="page-header">
+                        <h2 class="page-title">
+                            <i class="fas fa-clipboard-check"></i> 
+                            Suivi des Récoltes
+                        </h2>
+                        <div class="toolbar">
+                            <button class="add-harvest-btn" id="addHarvestBtn">
+                                <i class="fas fa-plus"></i> Nouvelle Récolte
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Statistiques de récolte -->
+                    <div class="harvest-container">
+                        <div class="harvest-section">
+                            <h3><i class="fas fa-chart-pie"></i> Aperçu des Récoltes</h3>
+                            <div class="harvest-stats">
+                                <div class="harvest-stat">
+                                    <i class="fas fa-calendar-check"></i>
+                                    <h4>12</h4>
+                                    <p>Récoltes planifiées</p>
+                                </div>
+                                <div class="harvest-stat">
+                                    <i class="fas fa-spinner"></i>
+                                    <h4>5</h4>
+                                    <p>En cours</p>
+                                </div>
+                                <div class="harvest-stat">
+                                    <i class="fas fa-check-circle"></i>
+                                    <h4>23</h4>
+                                    <p>Récoltes terminées</p>
+                                </div>
+                                <div class="harvest-stat">
+                                    <i class="fas fa-weight-hanging"></i>
+                                    <h4>1,245 kg</h4>
+                                    <p>Production totale</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="harvest-section">
+                            <h3><i class="fas fa-calendar-alt"></i> Prochaines Récoltes</h3>
+                            <table class="harvest-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Verger</th>
+                                        <th>Variété</th>
+                                        <th>Statut</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>15/10/2023</td>
+                                        <td>Verger des Coteaux</td>
+                                        <td>Franquette</td>
+                                        <td><span class="harvest-status status-planned">Planifiée</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>20/10/2023</td>
+                                        <td>Verger du Plateau</td>
+                                        <td>Mayette</td>
+                                        <td><span class="harvest-status status-planned">Planifiée</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>25/10/2023</td>
+                                        <td>Verger des Sources</td>
+                                        <td>Parisienne</td>
+                                        <td><span class="harvest-status status-planned">Planifiée</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Graphique de production -->
+                    <div class="harvest-chart">
+                        <h3><i class="fas fa-chart-line"></i> Historique des Récoltes (2023)</h3>
+                        <div class="chart-container">
+                            <canvas id="harvestChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Liste complète des récoltes -->
+                    <div class="harvest-section">
+                        <h3><i class="fas fa-list"></i> Toutes les Récoltes</h3>
+                        <table class="harvest-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Date</th>
+                                    <th>Verger</th>
+                                    <th>Variété</th>
+                                    <th>Quantité (kg)</th>
+                                    <th>Qualité</th>
+                                    <th>Statut</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#R023</td>
+                                    <td>05/10/2023</td>
+                                    <td>Verger des Coteaux</td>
+                                    <td>Franquette</td>
+                                    <td>85</td>
+                                    <td>Excellent</td>
+                                    <td><span class="harvest-status status-completed">Terminée</span></td>
+                                    <td>
+                                        <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                        <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#R022</td>
+                                    <td>30/09/2023</td>
+                                    <td>Verger du Plateau</td>
+                                    <td>Mayette</td>
+                                    <td>120</td>
+                                    <td>Bon</td>
+                                    <td><span class="harvest-status status-completed">Terminée</span></td>
+                                    <td>
+                                        <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                        <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#R021</td>
+                                    <td>15/09/2023</td>
+                                    <td>Verger Nouveau</td>
+                                    <td>Ferragnès</td>
+                                    <td>45</td>
+                                    <td>Moyen</td>
+                                    <td><span class="harvest-status status-completed">Terminée</span></td>
+                                    <td>
+                                        <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                        <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#R020</td>
+                                    <td>10/09/2023</td>
+                                    <td>Verger des Sources</td>
+                                    <td>Parisienne</td>
+                                    <td>92</td>
+                                    <td>Excellent</td>
+                                    <td><span class="harvest-status status-completed">Terminée</span></td>
+                                    <td>
+                                        <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                        <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#R019</td>
+                                    <td>En cours</td>
+                                    <td>Ancien Verger Est</td>
+                                    <td>Franquette</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td><span class="harvest-status status-inprogress">En cours</span></td>
+                                    <td>
+                                        <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                        <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>Copyright © 2023 Ferme de Noix | Tous droits réservés | <a href="#">Mentions légales</a></p>
+        </footer>
+    </div>
+
+    <!-- Modal pour ajouter/modifier une récolte -->
+    <div id="harvestModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fas fa-clipboard-check"></i> Nouvelle Récolte</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <form id="harvestForm">
+                <div class="form-group">
+                    <label class="form-label" for="harvestOrchard">
+                        <i class="fas fa-tree"></i> Verger
+                    </label>
+                    <select id="harvestOrchard" class="form-control" required>
+                        <option value="">Sélectionner un verger</option>
+                        <option value="1">Verger des Coteaux</option>
+                        <option value="2">Verger du Plateau</option>
+                        <option value="3">Verger des Sources</option>
+                        <option value="4">Verger Nouveau</option>
+                        <option value="5">Ancien Verger Est</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="harvestDate">
+                        <i class="fas fa-calendar-alt"></i> Date prévue
+                    </label>
+                    <input type="date" id="harvestDate" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="harvestVariety">
+                        <i class="fas fa-seedling"></i> Variété principale
+                    </label>
+                    <select id="harvestVariety" class="form-control" required>
+                        <option value="">Sélectionner une variété</option>
+                        <option value="franquette">Franquette</option>
+                        <option value="mayette">Mayette</option>
+                        <option value="parisienne">Parisienne</option>
+                        <option value="ferragnes">Ferragnès</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="harvestTeam">
+                        <i class="fas fa-users"></i> Équipe responsable
+                    </label>
+                    <select id="harvestTeam" class="form-control" required>
+                        <option value="">Sélectionner une équipe</option>
+                        <option value="team1">Équipe Nord</option>
+                        <option value="team2">Équipe Sud</option>
+                        <option value="team3">Équipe Est</option>
+                        <option value="team4">Équipe Ouest</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="harvestNotes">
+                        <i class="fas fa-sticky-note"></i> Notes
+                    </label>
+                    <textarea id="harvestNotes" class="form-control" rows="3"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelHarvestBtn">
+                        <i class="fas fa-times"></i> Annuler
+                    </button>
+                    <button type="submit" class="btn btn-primary" id="saveHarvestBtn">
+                        <i class="fas fa-save"></i> Enregistrer
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+<script src="suivi.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>

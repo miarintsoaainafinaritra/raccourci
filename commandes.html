@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commandes - Ferme de Noix</title>
+    <link rel="stylesheet" href="entre.css">
+    <link rel="stylesheet" href="commandes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <div class="logo">
+                <h1>🌰FERME DE NOIX</h1>
+                <p>Production Bio depuis 1985</p>
+            </div>
+            <div class="admin-info">
+                 <p><i class="fas fa-map-marker-alt"></i> Ferme des Coteaux</p>
+                <p><i class="fas fa-user-shield"></i> Admin Agriculteur</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Sidebar Navigation -->
+            <aside class="sidebar">
+                <div class="menu-section">
+                    <h3><i class="fas fa-seedling"></i> Gestion de la Ferme</h3>
+                    <ul class="menu">
+                        <li><a href="entre.html"><i class="fas fa-tachometer-alt"></i> Tableau de Bord</a></li>
+                        <li class="active"><a href="commandes.html"><i class="fas fa-shopping-basket"></i> Commandes</a></li>
+                        <li><a href="profile.html"><i class="fas fa-user"></i> Profil</a></li>
+                        <li><a href="gestionaire.html"><i class="fas fa-cogs"></i> Gestion Fermière</a></li>
+                    </ul>
+                </div>
+
+                <div class="profile-section">
+                    <ul class="profile-menu">
+                        <li><a href="cretificats.html"><i class="fas fa-print"></i> Certificats Bio</a></li>
+                        <li><a href="finaciere.html"><i class="fas fa-euro-sign"></i> Gestion Financière</a></li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Content Area -->
+            <main class="content">
+                <div class="orders-page">
+                    <div class="page-header">
+                        <h2><i class="fas fa-shopping-basket"></i> Gestion des Commandes</h2>
+                        <div class="actions">
+                            <button class="btn btn-primary"><i class="fas fa-plus"></i> Nouvelle Commande</button>
+                            <button class="btn btn-secondary"><i class="fas fa-filter"></i> Filtrer</button>
+                        </div>
+                    </div>
+
+                    <div class="orders-filter">
+                        <div class="filter-group">
+                            <label for="status-filter">Statut :</label>
+                            <select id="status-filter">
+                                <option value="all">Toutes les commandes</option>
+                                <option value="pending">En attente</option>
+                                <option value="processing">En préparation</option>
+                                <option value="shipped">Expédiées</option>
+                                <option value="delivered">Livrées</option>
+                                <option value="cancelled">Annulées</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="date-filter">Période :</label>
+                            <select id="date-filter">
+                                <option value="today">Aujourd'hui</option>
+                                <option value="week">Cette semaine</option>
+                                <option value="month" selected>Ce mois</option>
+                                <option value="year">Cette année</option>
+                                <option value="custom">Personnalisée</option>
+                            </select>
+                        </div>
+                        <div class="search-box">
+                            <input type="text" placeholder="Rechercher une commande...">
+                            <button><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="orders-table-container">
+                        <table class="orders-table">
+                            <thead>
+                                <tr>
+                                    <th>N° Commande</th>
+                                    <th>Date</th>
+                                    <th>Client</th>
+                                    <th>Produits</th>
+                                    <th>Montant</th>
+                                    <th>Statut</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#1287</td>
+                                    <td>15/06/2023</td>
+                                    <td>Épicerie Bio Paris</td>
+                                    <td>Noix Grenoble x5, Cerneaux x2</td>
+                                    <td>148,50 €</td>
+                                    <td><span class="status shipped">Expédiée</span></td>
+                                    <td>
+                                        <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                                        <button class="btn-icon"><i class="fas fa-print"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#1286</td>
+                                    <td>14/06/2023</td>
+                                    <td>Restaurant La Table</td>
+                                    <td>Noix Cerneaux x10</td>
+                                    <td>210,00 €</td>
+                                    <td><span class="status processing">En préparation</span></td>
+                                    <td>
+                                        <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                                        <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#1285</td>
+                                    <td>12/06/2023</td>
+                                    <td>Particulier - Lyon</td>
+                                    <td>Mélange Noix x3</td>
+                                    <td>45,00 €</td>
+                                    <td><span class="status delivered">Livrée</span></td>
+                                    <td>
+                                        <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                                        <button class="btn-icon"><i class="fas fa-print"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#1284</td>
+                                    <td>10/06/2023</td>
+                                    <td>Magasin Bio Vert</td>
+                                    <td>Noix Grenoble x8, Cerneaux x5</td>
+                                    <td>237,60 €</td>
+                                    <td><span class="status pending">En attente</span></td>
+                                    <td>
+                                        <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                                        <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#1283</td>
+                                    <td>08/06/2023</td>
+                                    <td>Traiteur Les Saveurs</td>
+                                    <td>Cerneaux x15</td>
+                                    <td>315,00 €</td>
+                                    <td><span class="status delivered">Livrée</span></td>
+                                    <td>
+                                        <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                                        <button class="btn-icon"><i class="fas fa-print"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>Copyright © 2023 Ferme de Noix | Tous droits réservés | <a href="#">Mentions légales</a></p>
+        </footer>
+    </div>
+
+    <script src="commandes.js"></script>
+</body>
+</html>
